@@ -6,8 +6,8 @@ namespace film_library_backEnd.Services
 {
     public interface IUserService
     {
-        UserResponse Auth(UserAuthRequest model);
+        Task<UserResponse> Auth(UserAuthRequest model);
 
-        UserRegisterResponse Register(UserRegisterRequest model);
+        Task<UserRegisterResponse> Register(UserRegisterRequest model);
     }
 }

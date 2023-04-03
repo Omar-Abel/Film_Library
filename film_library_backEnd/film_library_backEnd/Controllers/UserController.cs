@@ -18,14 +18,13 @@ namespace film_library_backEnd.Controllers
         {
             _userService = userService;
         }
-        
 
         [HttpPost("login")]
-        public IActionResult AuthenticateUser([FromBody] UserAuthRequest model)
+        public async Task<IActionResult> AuthenticateUser([FromBody] UserAuthRequest model)
         {
             Response response = new Response();
 
-            var uResponse = _userService.Auth(model);
+            var uResponse = await _userService.Auth(model);
 
             if (uResponse == null)
             {
@@ -42,10 +41,11 @@ namespace film_library_backEnd.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult RegisterUser([FromBody] UserRegisterRequest model)
+        public async Task<IActionResult> RegisterUser([FromBody] UserRegisterRequest model)
         {
             Response response = new Response();
-            var uResponse = _userService.Register(model);
+
+            var uResponse = await _userService.Register(model);
 
             if (uResponse == null)
             {
@@ -57,8 +57,8 @@ namespace film_library_backEnd.Controllers
             response.success = 1;
             response.message = "Se ha registrado el usuario";
             response.Data = uResponse;
-            return Ok(response);
 
+            return Ok(response);
         }
 
     }

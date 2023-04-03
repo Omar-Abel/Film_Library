@@ -5,11 +5,13 @@ using film_library_backEnd.Models.Reponse;
 using film_library_backEnd.Models.Request;
 using film_library_backEnd.Tools;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace film_library_backEnd.Services
 {
@@ -22,15 +24,15 @@ namespace film_library_backEnd.Services
             _appSettings = appSettings.Value;
         }
 
-        public UserResponse Auth(UserAuthRequest model)
+        public async Task<UserResponse> Auth(UserAuthRequest model)
         {
             UserResponse uReponse = new UserResponse();
             using (var db = new FILM_LIBRARYContext())
             {
                 string spassword = Encrypt.GetSHA256(model.password);
 
-                var user = db.Users.Where(x => x.UserName == model.userName 
-                && x.Password == spassword).FirstOrDefault();
+                var user = await db.Users.FirstOrDefaultAsync(x => x.UserName == model.userName
+                && x.Password == spassword);
 
                 if (user == null) return null;
                 uReponse.userName = user.UserName;
@@ -55,20 +57,20 @@ namespace film_library_backEnd.Services
                     }
                     ),
                 Expires = DateTime.UtcNow.AddDays(60),
-                SigningCredentials = 
+                SigningCredentials =
                 new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
 
-        public UserRegisterResponse Register(UserRegisterRequest model)
+        public async Task<UserRegisterResponse> Register(UserRegisterRequest model)
         {
             UserRegisterResponse uResponse = new UserRegisterResponse();
 
             using (var db = new FILM_LIBRARYContext())
             {
-                if (db.Users.Any(x => x.UserName == model.userName && x.Email == model.email))
+                if (await db.Users.AnyAsync(x => x.UserName == model.userName && x.Email == model.email))
                 {
                     uResponse.userName = model.userName;
                     uResponse.email = model.email;
@@ -85,17 +87,12 @@ namespace film_library_backEnd.Services
                 user.Password = Encrypt.GetSHA256(model.password);
 
                 db.Users.Add(user);
-                db.SaveChangesAsync();
+                await db.SaveChangesAsync();
 
                 return uResponse;
 
             }
 
         }
-
-
-
-
-
     }
 }
