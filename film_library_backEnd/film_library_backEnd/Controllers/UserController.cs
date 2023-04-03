@@ -9,18 +9,19 @@ namespace film_library_backEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class UserController : ControllerBase
     {
+        
         private IUserService _userService; 
 
         public UserController(IUserService userService)
         {
             _userService = userService;
         }
+        
 
         [HttpPost("login")]
-        public async Task<IActionResult> AuthenticateUser([FromBody] UserAuthRequest model)
+        public IActionResult AuthenticateUser([FromBody] UserAuthRequest model)
         {
             Response response = new Response();
 
@@ -36,16 +37,29 @@ namespace film_library_backEnd.Controllers
             response.success = 1;
             response.message = "Se ha iniciado sesion";
             response.Data = uResponse;
-            
+
             return Ok(response);
         }
 
-        //[HttpPost("register")]
-        //public async Task<IActionResult> RegisterUser()
-        //{
-        //    Response response = new Response();
+        [HttpPost("register")]
+        public IActionResult RegisterUser([FromBody] UserRegisterRequest model)
+        {
+            Response response = new Response();
+            var uResponse = _userService.Register(model);
 
-        //}
+            if (uResponse == null)
+            {
+                response.success = 0;
+                response.message = "Registro invalido o ya existente";
+                return BadRequest(response);
+            }
+
+            response.success = 1;
+            response.message = "Se ha registrado el usuario";
+            response.Data = uResponse;
+            return Ok(response);
+
+        }
 
     }
 }

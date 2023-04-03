@@ -24,6 +24,10 @@ namespace film_library_backEnd.Models
         [StringLength(30)]
         [Unicode(false)]
         public string UserName { get; set; } = null!;
+        [Column("email")]
+        [StringLength(60)]
+        [Unicode(false)]
+        public string Email { get; set; } = null!;
         [Column("password")]
         [StringLength(256)]
         [Unicode(false)]

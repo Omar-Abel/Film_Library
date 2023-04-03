@@ -25,7 +25,6 @@ namespace film_library_backEnd.Services
         public UserResponse Auth(UserAuthRequest model)
         {
             UserResponse uReponse = new UserResponse();
-            Response reponse = new Response();
             using (var db = new FILM_LIBRARYContext())
             {
                 string spassword = Encrypt.GetSHA256(model.password);
@@ -62,6 +61,41 @@ namespace film_library_backEnd.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
+        public UserRegisterResponse Register(UserRegisterRequest model)
+        {
+            UserRegisterResponse uResponse = new UserRegisterResponse();
+
+            using (var db = new FILM_LIBRARYContext())
+            {
+                if (db.Users.Any(x => x.UserName == model.userName && x.Email == model.email))
+                {
+                    uResponse.userName = model.userName;
+                    uResponse.email = model.email;
+                    return null;
+                }
+                uResponse.userName = model.userName;
+                uResponse.email = model.email;
+
+                var user = new User();
+                user.FirstName = model.firstName;
+                user.LastName = model.lastName;
+                user.UserName = model.userName;
+                user.Email = model.email;
+                user.Password = Encrypt.GetSHA256(model.password);
+
+                db.Users.Add(user);
+                db.SaveChangesAsync();
+
+                return uResponse;
+
+            }
+
+        }
+
+
+
+
 
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\FilmLibrary\\film_library_backEnd\\film_library_backEnd.csproj": {}
+    "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\film_library_backEnd\\film_library_backEnd\\film_library_backEnd.csproj": {}
   },
   "projects": {
-    "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\FilmLibrary\\film_library_backEnd\\film_library_backEnd.csproj": {
+    "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\film_library_backEnd\\film_library_backEnd\\film_library_backEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\FilmLibrary\\film_library_backEnd\\film_library_backEnd.csproj",
+        "projectUniqueName": "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\film_library_backEnd\\film_library_backEnd\\film_library_backEnd.csproj",
         "projectName": "film_library_backEnd",
-        "projectPath": "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\FilmLibrary\\film_library_backEnd\\film_library_backEnd.csproj",
+        "projectPath": "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\film_library_backEnd\\film_library_backEnd\\film_library_backEnd.csproj",
         "packagesPath": "C:\\Users\\omarl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\FilmLibrary\\film_library_backEnd\\obj\\",
+        "outputPath": "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\film_library_backEnd\\film_library_backEnd\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -67,6 +67,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.15, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.13, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -56,6 +56,9 @@ namespace film_library_backEnd
 
             var app = builder.Build();
 
+            app.UseAuthorization();
+            app.UseAuthentication();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -65,8 +68,7 @@ namespace film_library_backEnd
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-            app.UseAuthentication();
+
 
 
             app.MapControllers();
