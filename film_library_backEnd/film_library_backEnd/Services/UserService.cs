@@ -24,7 +24,7 @@ namespace film_library_backEnd.Services
             _appSettings = appSettings.Value;
         }
 
-        public async Task<UserResponse> Auth(UserAuthRequest model)
+        public async Task<UserResponse> AuthUser(UserAuthRequest model)
         {
             UserResponse uReponse = new UserResponse();
             using (var db = new FILM_LIBRARYContext())
@@ -64,7 +64,7 @@ namespace film_library_backEnd.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public async Task<UserRegisterResponse> Register(UserRegisterRequest model)
+        public async Task<UserRegisterResponse> RegisterUser(UserRegisterRequest model)
         {
             UserRegisterResponse uResponse = new UserRegisterResponse();
 
@@ -79,12 +79,15 @@ namespace film_library_backEnd.Services
                 uResponse.userName = model.userName;
                 uResponse.email = model.email;
 
-                var user = new User();
-                user.FirstName = model.firstName;
-                user.LastName = model.lastName;
-                user.UserName = model.userName;
-                user.Email = model.email;
-                user.Password = Encrypt.GetSHA256(model.password);
+                var user = new User
+                {
+                    FirstName = model.firstName,
+                    LastName = model.lastName,
+                    UserName = model.userName,
+                    Email = model.email,
+                    Password = Encrypt.GetSHA256(model.password)
+                };
+
 
                 db.Users.Add(user);
                 await db.SaveChangesAsync();

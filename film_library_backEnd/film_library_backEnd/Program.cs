@@ -52,6 +52,10 @@ namespace film_library_backEnd
             });
 
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IFilmService, FilmService>();
+                
+
+            builder.Services.AddHttpContextAccessor();
 
 
             var app = builder.Build();

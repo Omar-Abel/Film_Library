@@ -24,7 +24,7 @@ namespace film_library_backEnd.Controllers
         {
             Response response = new Response();
 
-            var uResponse = await _userService.Auth(model);
+            var uResponse = await _userService.AuthUser(model);
 
             if (uResponse == null)
             {
@@ -45,7 +45,7 @@ namespace film_library_backEnd.Controllers
         {
             Response response = new Response();
 
-            var uResponse = await _userService.Register(model);
+            var uResponse = await _userService.RegisterUser(model);
 
             if (uResponse == null)
             {
