@@ -1,14 +1,14 @@
 import { CanActivateFn } from "@angular/router";
 import { inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { ApiAuthService } from "../services/apiAuth.service";
+import { ApiUserService } from "../services/apiUser.service";
 
 
 
 export const authGuardFn: CanActivateFn = () => {
     
     const routerService = inject(Router);
-    const apiAuthService = inject(ApiAuthService);
+    const apiAuthService = inject(ApiUserService);
 
     const user = apiAuthService.userData;
 

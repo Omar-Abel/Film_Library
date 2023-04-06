@@ -1,12 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ApiAuthService } from 'src/app/services/apiAuth.service';
-
-
-
-
-
-
+import { ApiUserService } from 'src/app/services/apiUser.service';
+import { RegisterComponent } from '../register/register.component';
+import { UserLogin } from 'src/app/models/user';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -19,18 +17,24 @@ import { ApiAuthService } from 'src/app/services/apiAuth.service';
 export class LoginComponent implements OnInit {
   public hide: boolean = true;
 
-  public userName: string = '';
-  public password: string = '';
 
 
-  constructor( private authService: ApiAuthService,
-    private router: Router) { 
-      
+    public LoginForm = this.formBuilder.group({
+    userName: ['', Validators.required],
+    password: ['', Validators.required]
+  })
 
-  }
+
+
+  constructor( 
+    private authService: ApiUserService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
+    ) 
+    { }
 
   ngOnInit(): void {
-    console.log('test');
     if(this.authService.userData){
       this.router.navigate(['/main']);
     } else {
@@ -39,13 +43,19 @@ export class LoginComponent implements OnInit {
   }
 
   LogIn(){
-    this.authService.LogIn(this.userName, this.password).subscribe(response => {
+    const user: UserLogin = this.LoginForm.value as UserLogin;
+
+    this.authService.LogIn(user).subscribe(response => {
       if(response.success === 1){
         this.router.navigate(['/main']);
       }
     });
   }
 
+  openDialog() {
+    this.dialog.open(RegisterComponent, {disableClose: true});
+    
+  }
 
 
 }

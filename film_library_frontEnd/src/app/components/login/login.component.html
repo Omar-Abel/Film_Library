@@ -4,20 +4,25 @@
       <img src="./assets/imgs/login.png" alt="" width="50%" height="80%">
       <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
 
+      <form [formGroup]="LoginForm" (ngSubmit)="LogIn()">
       <mat-form-field class="form" appearance="fill">
           <mat-label>Usuario</mat-label>
-          <input type="text" [(ngModel)]="userName" matInput >
+          <input type="text" formControlName="userName" matInput #input maxlength="30">
         </mat-form-field>
-
         <br>
 
         <mat-form-field class="form" appearance="fill">
           <mat-label>Contraseña</mat-label>
-          <input matInput [(ngModel)]="password" [type]="hide ? 'password' : 'text'" (keyup.enter)="LogIn()">
+          <input matInput  [type]="hide ? 'password' : 'text'" (keyup.enter)="LogIn()" formControlName="password" #input maxlength="250">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
-        <button  (click)="LogIn()" class="form" mat-raised-button mat-button color="primary">Entrar</button>
+
+        <button class="form" [disabled]="!LoginForm.valid" mat-raised-button mat-button color="primary" type="submit">Acceder</button>
+      </form>
+      <button class="form" (click)="openDialog()" mat-raised-button mat-button color="accent">Registrarse</button>
   </div>
 </div>
+
+

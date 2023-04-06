@@ -1,0 +1,166 @@
+<h2 mat-dialog-title>Registrarse</h2>
+<mat-dialog-content class="body">
+  <div class="login">
+    <form [formGroup]="RegisterForm" (ngSubmit)="Register()">
+      <mat-form-field class="form" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="firstName"
+          #inputfn
+          maxlength="60"
+        />
+        <mat-hint
+          align="start"
+          style="color: red"
+          *ngIf="(FirstName.errors?.['required'] && FirstName.touched)"
+          > El campo esta vacio
+          </mat-hint>
+
+          <mat-hint
+          align="start"
+          style="color: red"
+          *ngIf="(FirstName.errors?.['pattern'] && FirstName.touched)"
+          > Solo se permiten letras
+          </mat-hint>
+
+        <mat-hint align="end">{{ inputfn.value.length }}/60</mat-hint>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="form" appearance="fill">
+        <mat-label>Apellido</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="lastName"
+          #inputln
+          maxlength="60"
+        />
+        <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(LastName.errors?.['required'] && LastName.touched)"
+        > El campo esta vacio
+        </mat-hint>
+
+        <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(LastName.errors?.['pattern'] && LastName.touched)"
+        > Solo se permiten letras
+        </mat-hint>
+        <mat-hint align="end">{{ inputln.value.length }}/60</mat-hint>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="form" appearance="fill">
+        <mat-label>Usuario</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="userName"
+          #inputun
+          maxlength="30"
+        />
+        <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(UserName.errors?.['required'] && UserName.touched)"
+        > El campo esta vacio
+        </mat-hint>
+
+        <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(UserName.errors?.['pattern'] && UserName.touched)"
+        > usuario no valido
+        </mat-hint>
+        <mat-hint align="end">{{ inputun.value.length }}/30</mat-hint>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="form" appearance="fill">
+        <mat-label>Correo</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="email"
+          #inpute
+          maxlength="90"
+        />
+        <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(Email.errors?.['required'] && Email.touched)"
+        > El campo esta vacio
+        </mat-hint>
+
+        <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(Email.errors?.['email'] && Email.touched)"
+        > Correo no valido
+        </mat-hint>
+        <mat-hint align="end">{{ inpute.value.length }}/90</mat-hint>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="form" appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+          #inputpw
+          maxlength="90"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(Password.errors?.['required'] && Password.touched)"
+        > El campo esta vacio
+        </mat-hint>
+
+        <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(Password.errors?.['minlength'] && Password.touched)"
+        > La contraseña debe tener al menos 8 caracteres
+        </mat-hint>
+        <mat-hint align="end">{{ inputpw.value.length }}/90</mat-hint>
+      </mat-form-field>
+      <button
+        class="form"
+        mat-raised-button
+        mat-button
+        color="primary"
+        type="submit"
+        [disabled]="!RegisterForm.valid"
+      >
+        Registrarse
+      </button>
+      <br />
+      <button
+        mat-dialog-close
+        class="form"
+        mat-raised-button
+        mat-button
+        color="warn"
+      >
+        Cancelar
+      </button>
+    </form>
+  </div>
+</mat-dialog-content>

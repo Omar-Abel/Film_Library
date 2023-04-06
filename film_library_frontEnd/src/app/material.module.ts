@@ -10,6 +10,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -31,7 +33,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatCardModule,
     FlexLayoutModule,
     LayoutModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule,
+    MatSnackBarModule
+    
 
   ]
 })

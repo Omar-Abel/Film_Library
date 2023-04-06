@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NavMainComponent } from './components/nav-main/nav-main.component';
 import { FormsModule } from '@angular/forms';
 import { JwtInterceptor } from './security/jwt.interceptor';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { JwtInterceptor } from './security/jwt.interceptor';
     AppComponent,
     LoginComponent,
     HomePageComponent,
-    NavMainComponent
+    NavMainComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { JwtInterceptor } from './security/jwt.interceptor';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    
     
   ],
   providers: [

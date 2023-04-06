@@ -4,6 +4,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { authGuardFn } from './security/authFn.guard';
 import { NavMainComponent } from './components/nav-main/nav-main.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   { path: '',
