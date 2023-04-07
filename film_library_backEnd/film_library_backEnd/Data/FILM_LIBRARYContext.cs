@@ -17,6 +17,7 @@ namespace film_library_backEnd.Data
         {
         }
 
+        public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Film> Films { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
@@ -31,6 +32,14 @@ namespace film_library_backEnd.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Film>(entity =>
+            {
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Films)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Films__UserId__4BAC3F29");
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 
