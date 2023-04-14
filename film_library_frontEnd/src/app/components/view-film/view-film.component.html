@@ -1,0 +1,54 @@
+<mat-card class="body">
+  <mat-card-header>
+    <mat-card-title>
+       {{ filmselected.tittle }} 
+    </mat-card-title>
+  </mat-card-header>
+  <br />
+  <mat-divider></mat-divider>
+
+  <div class="content">
+    <div class="info">
+      <br />
+      <h2 mat-card-subtitle>Fecha de lanzamiento:</h2>
+      <p>{{ filmselected.releaseDate | date : "dd/MM/yyyy" }}</p>
+      <br />
+      <h2 mat-card-subtitle>Categorias:</h2>
+      <p>{{ filmselected.category }}</p>
+      <br />
+      <h2 mat-card-subtitle>Descripcion:</h2>
+      <p>{{ filmselected.description }}</p>
+    </div>
+    <img class="film-image" mat-card-image src="./assets/imgs/godfather.jpg" />
+  </div>
+
+  <mat-card-actions>
+    <button
+      class="form"
+      mat-stroked-button
+      color="primary"
+      type="button"
+      (click)="openEditFilm()"
+    >
+      Editar
+    </button>
+    <button
+    class="form"
+    mat-stroked-button
+    color="warn"
+    type="button"
+  >
+    Eliminar
+  </button>
+    <button
+      class="form"
+      mat-stroked-button
+      color="basic"
+      type="button"
+      (click)="close()"
+    >
+      Cerrar
+    </button>
+
+  </mat-card-actions>
+</mat-card>

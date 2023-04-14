@@ -1,0 +1,19 @@
+.content {
+  padding: 16px;
+}
+
+.shadow-card{
+  transition: all .25s linear;
+  box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.6);  
+}
+
+.shadow-card:hover{
+  box-shadow: -1px 10px 29px 0px rgba(0,0,0,0.8);
+  cursor: pointer;
+}
+
+.content > mat-card {
+  width: 200px;
+}
+
+

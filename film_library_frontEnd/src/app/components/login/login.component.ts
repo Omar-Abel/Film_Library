@@ -5,6 +5,7 @@ import { ApiUserService } from 'src/app/services/apiUser.service';
 import { RegisterComponent } from '../register/register.component';
 import { UserLogin } from 'src/app/models/user';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 export class LoginComponent implements OnInit {
   public hide: boolean = true;
+  public disable: boolean = false;
 
 
 
@@ -30,7 +32,8 @@ export class LoginComponent implements OnInit {
     private authService: ApiUserService,
     private router: Router,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
     ) 
     { }
 
@@ -46,9 +49,16 @@ export class LoginComponent implements OnInit {
     const user: UserLogin = this.LoginForm.value as UserLogin;
 
     this.authService.LogIn(user).subscribe(response => {
+      console.log(response);
       if(response.success === 1){
+        this.snackBar.open('Se ha iniciado sesion!', 'Aceptar', { duration: 3000 });
         this.router.navigate(['/main']);
+      } else {
+        this.snackBar.open('Usuario o contraseña incorrecta!', 'Aceptar', { duration: 3000 });
       }
+
+      
+
     });
   }
 

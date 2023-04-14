@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './components/home-page/home-page.component';
+import { FilmsPageComponent } from './components/films-page/films-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { authGuardFn } from './security/authFn.guard';
 import { NavMainComponent } from './components/nav-main/nav-main.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 const routes: Routes = [
   { path: '',
@@ -14,18 +15,23 @@ const routes: Routes = [
   { path: 'main', 
     component: NavMainComponent,
     canActivate: [authGuardFn],
-    title: 'Main', 
+    title: 'Film Library', 
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'films',
         pathMatch: 'full',
       },
       { 
-        path: 'home', 
-        component: HomePageComponent, 
+        path: 'films', 
+        component: FilmsPageComponent, 
         pathMatch: 'full' 
       },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        pathMatch: 'full'
+      }
 
   ]
   },
@@ -33,6 +39,13 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     title: 'Login',
+    children: [
+      {
+        path: 'register',
+        component: RegisterComponent,
+        title: 'Register',
+      }
+    ]
   },
   {
     path: '**',

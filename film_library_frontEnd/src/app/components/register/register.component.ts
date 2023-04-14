@@ -22,6 +22,7 @@ export class RegisterComponent {
     password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
   })
 
+
   constructor(
    private _registerService: ApiUserService,
    public dialog: MatDialog,
@@ -29,28 +30,22 @@ export class RegisterComponent {
    private formBuilder: FormBuilder,
   ) { }
 
-
-
- 
-
-
-
-
-
   Register(){
 
      const user: UserRegister = this.RegisterForm.value as UserRegister;
 
     this._registerService.Register(user).subscribe(response => {
       if(response.success === 1){
-        console.log(response);
         this.snackBar.open('Usuario registrado con exito!', '', { duration: 3000 });
       } else {
         this.snackBar.open('Error al registrar usuario!', '', { duration: 3000 });
       }});
 
       this.dialog.closeAll();
+
   }
+
+
 
   get FirstName(): FormControl{
     return this.RegisterForm.get('firstName') as FormControl;

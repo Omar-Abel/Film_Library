@@ -1,5 +1,6 @@
 .sidenav-container {
   height: 100%;
+  background-color: #f7f7f7;
 }
 
 .sidenav {
@@ -15,3 +16,14 @@
   top: 0;
   z-index: 1;
 }
+
+
+.mat-icon {
+    margin-right: 5px;
+  vertical-align: middle;
+}
+
+.active-link {
+  background: #e8eaf6;
+}
+

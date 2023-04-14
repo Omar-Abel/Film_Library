@@ -5,18 +5,22 @@
       <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
 
       <form [formGroup]="LoginForm" (ngSubmit)="LogIn()">
+
       <mat-form-field class="form" appearance="fill">
           <mat-label>Usuario</mat-label>
-          <input type="text" formControlName="userName" matInput #input maxlength="30">
+          <input type="text" formControlName="userName" matInput #input maxlength="30" >
         </mat-form-field>
         <br>
 
         <mat-form-field class="form" appearance="fill">
           <mat-label>Contraseña</mat-label>
-          <input matInput  [type]="hide ? 'password' : 'text'" (keyup.enter)="LogIn()" formControlName="password" #input maxlength="250">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+
+          <input matInput  [type]="hide ? 'password' : 'text'"  formControlName="password" #input maxlength="250">
+
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
+
         </mat-form-field>
 
         <button class="form" [disabled]="!LoginForm.valid" mat-raised-button mat-button color="primary" type="submit">Acceder</button>

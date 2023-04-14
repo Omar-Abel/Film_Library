@@ -1,0 +1,13 @@
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div  fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let film of films">
+      <mat-card class="shadow-card" (click)="getFilmSelected(film.id)" >
+        <mat-card-header>
+          <mat-card-title> {{film.tittle}} </mat-card-title>
+          <mat-card-subtitle> {{film.releaseDate |date: 'dd/MM/yyyy'}} | {{film.category}} </mat-card-subtitle>
+        </mat-card-header>
+        <img class="film-image" mat-card-image src="./assets/imgs/godfather.jpg">
+      </mat-card>
+    </div>
+  </div>
+  </div>

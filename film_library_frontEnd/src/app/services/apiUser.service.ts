@@ -13,7 +13,7 @@ export class ApiUserService {
 
   baseURL: string = "https://localhost:7241/api/User";
 
-  private _userSubject!: BehaviorSubject<UserAuth> | any;
+  private _userSubject: BehaviorSubject<UserAuth>;
 
   public get userData(): UserAuth {
     return this._userSubject.value;
@@ -22,7 +22,7 @@ export class ApiUserService {
   constructor(
     private _http: HttpClient
   ) { 
-    this._userSubject = new BehaviorSubject<UserAuth>(JSON.parse(localStorage.getItem('user')!));
+    this._userSubject = new BehaviorSubject<UserAuth>(JSON.parse(localStorage.getItem('user')!)) ;  
   }
 
 
@@ -49,7 +49,7 @@ export class ApiUserService {
 
     LogOut() {
     localStorage.removeItem('user');
-    this._userSubject.next(null);
+    this._userSubject.next(null!);
     }
 
 }
