@@ -1,0 +1,56 @@
+<mat-card class="body">
+  <mat-card-header>
+    <mat-card-title>
+       Añadir Categoria
+    </mat-card-title>
+  </mat-card-header>
+  <br />
+  <mat-divider></mat-divider>
+
+      <br />
+      <form [formGroup]="AddingForm" (ngSubmit)="CreateCategory()">
+
+        <mat-form-field class="form" appearance="fill">
+          <mat-label>Titulo</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="categoryName"
+            #inputtle
+            maxlength="30"
+          />
+          <mat-hint
+          align="start"
+          style="color: red"
+          *ngIf="(CategoryName.errors?.['required'] && CategoryName.touched)"
+          > El campo esta vacio
+          </mat-hint>
+          <mat-hint align="end">{{ inputtle.value.length }}/30</mat-hint>
+</mat-form-field>
+        </form>
+        <br>
+        
+
+
+  <mat-card-actions>
+    <button
+      class="form"
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="CreateCategory()"
+      [disabled]="!AddingForm.valid"
+    >
+      Añadir
+    </button>
+    <button
+    class="form"
+    mat-raised-button
+    color="warn"
+    type="button"
+    (click)="close()"
+  >
+    Cancelar
+  </button>
+  </mat-card-actions>
+</mat-card>

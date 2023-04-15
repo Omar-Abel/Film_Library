@@ -66,8 +66,8 @@
         <mat-form-field class="form" appearance="fill">
           <mat-label>Categorias</mat-label>
           <mat-select formControlName="category" multiple>
-            <mat-option *ngFor="let category of categories" [value]="category">
-              {{ category }}
+            <mat-option *ngFor="let category of categories" [value]="category.name">
+              {{ category.name }}
             </mat-option>
           </mat-select>
           <mat-hint
@@ -91,13 +91,15 @@
         <input
         id="imageInput" 
         hidden 
-        type="file" 
+        type="file"
+        accept="image/*" 
         #uploader
-        (change)="uploadImage($event)"
+        (change)="ShowImage($event)"
     />
         <button
         (click)="uploader.click()"
         mat-raised-button
+        type="button"
         color="accent"
         >Subir imagen</button>
         </form>
@@ -110,8 +112,9 @@
       class="form"
       mat-raised-button
       color="primary"
-      type="button"
+      type="submit"
       (click)="CreateFilm()"
+      [disabled]="!AddingForm.valid"
     >
       Añadir
     </button>

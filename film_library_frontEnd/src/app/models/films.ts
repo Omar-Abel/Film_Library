@@ -3,7 +3,16 @@ export interface Film {
   tittle: string;
   description: string;
   releaseDate: Date;
-  category: number;
+  category: string;
   imagePath: string;
+  userId: number;
+}
+
+export interface FilmResponse {
+  tittle: string;
+  description: string;
+  releaseDate: Date;
+  category: string;
+  image: File;
   userId: number;
 }

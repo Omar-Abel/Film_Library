@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { ApiUserService } from 'src/app/services/apiUser.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFilmComponent } from '../add-film/add-film.component';
+import { AddCategoryComponent } from '../add-category/add-category.component';
 
 @Component({
   selector: 'app-nav-main',
@@ -27,9 +28,14 @@ export class NavMainComponent {
 
     user = this._apiAuthService.userData.userName;
 
-    OpenAddDialog() {
-      this.dialog.open(AddFilmComponent);
+    OpenAddFilmDialog() {
+      this.dialog.open(AddFilmComponent, { disableClose: true });
     }
+
+    OpenAddCategoryDialog() {
+      this.dialog.open(AddCategoryComponent, { disableClose: true });
+    }
+
 
     LogOut() {
       this._apiAuthService.LogOut();

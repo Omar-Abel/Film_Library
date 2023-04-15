@@ -17,9 +17,8 @@ import { ViewFilmComponent } from './components/view-film/view-film.component';
 import { EditFilmComponent } from './components/edit-film/edit-film.component';
 import { AddFilmComponent } from './components/add-film/add-film.component';
 import { CategoriesComponent } from './components/categories/categories.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
+
 
 
 @NgModule({
@@ -32,7 +31,8 @@ import { MatSortModule } from '@angular/material/sort';
     ViewFilmComponent,
     EditFilmComponent,
     AddFilmComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +41,7 @@ import { MatSortModule } from '@angular/material/sort';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
+    FormsModule
     
     
   ],

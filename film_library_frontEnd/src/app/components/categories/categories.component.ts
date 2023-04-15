@@ -1,30 +1,50 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { CategoriesDataSource, CategoriesItem } from './categories-datasource';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { Categories } from 'src/app/models/Categories';
+import { ApiCategoriesServiceService } from 'src/app/services/api-categories-service.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<CategoriesItem>;
-  dataSource: CategoriesDataSource;
+export class CategoriesComponent implements OnInit {
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  constructor(
+    private _categoriesService: ApiCategoriesServiceService
+  ) { }
 
-  constructor() {
-    this.dataSource = new CategoriesDataSource();
+
+  public ngOnInit(): void {
+    this.getCategories();
+    
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  
+  public categories!: Categories[];
+
+  displayedColumns: string[] = ['id', 'name', 'actions'];
+
+
+
+ public getCategories() {
+    this._categoriesService.getUserCategories().subscribe((response) => {
+      console.log(response);
+      this.categories = response.data;
+    });
   }
+
+  DeleteCategory(categoryId: number) {
+    this._categoriesService.deleteUserCategory(categoryId).subscribe((response) => {
+      console.log(response);
+      this.getCategories();
+    });
+  }
+
+
+
 }

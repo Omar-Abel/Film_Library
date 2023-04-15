@@ -15,6 +15,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -41,7 +42,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSnackBarModule,
     MatGridListModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
     
 
   ]

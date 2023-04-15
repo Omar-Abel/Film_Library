@@ -1,7 +1,7 @@
 <mat-card class="body">
   <mat-card-header>
     <mat-card-title>
-       {{ filmselected.tittle }} fklasdjfkladsjfkl
+      Actualizar {{ filmselected.tittle }} 
     </mat-card-title>
   </mat-card-header>
   <br />
@@ -68,8 +68,8 @@
         <mat-form-field class="form" appearance="fill">
           <mat-label>Categorias</mat-label>
           <mat-select formControlName="category" multiple>
-            <mat-option *ngFor="let category of categories" [value]="category">
-              {{ category }}
+            <mat-option *ngFor="let category of categories" [value]="category.name">
+              {{ category.name }}
             </mat-option>
           </mat-select>
           <mat-hint
@@ -86,11 +86,12 @@
           matInput
           formControlName="imagePath" 
           type="text"
-          hidden
+          readonly
           />
         </mat-form-field>
         <br>
-        <input 
+        <input
+        id="imageInput" 
         hidden 
         type="file" 
         #uploader
@@ -102,11 +103,10 @@
         color="accent"
         >Subir imagen</button>
 
-  
         </form>
-    </div>
-    <img class="film-image" mat-card-image src="./assets/imgs/godfather.jpg" />
-  </div>
+
+        <br>
+
 
   <mat-card-actions>
     <button
@@ -126,7 +126,8 @@
   >
     Cancelar
   </button>
-
-
   </mat-card-actions>
+  </div>
+  </div>
+
 </mat-card>

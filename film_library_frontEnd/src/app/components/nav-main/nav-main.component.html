@@ -16,7 +16,7 @@
         Peliculas
       </a>
       <br>
-      <a mat-list-item (click)="OpenAddDialog()" >
+      <a mat-list-item (click)="OpenAddFilmDialog()" >
         <mat-icon mat-list-icon >add_circle</mat-icon>
         Añadir Pelicula
       </a>
@@ -26,7 +26,7 @@
         Categorias
       </a>
       <br>
-      <a mat-list-item [routerLink]="['/main/home']" routerLinkActive="active-link">
+      <a mat-list-item (click)="OpenAddCategoryDialog()" >
         <mat-icon mat-list-icon >bookmark_add</mat-icon>
         Añadir Categoria
       </a>

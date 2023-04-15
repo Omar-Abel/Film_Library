@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Response } from '../models/response';
 import { UserAuth, UserLogin, UserRegister } from '../models/user';
 import { map } from 'rxjs/operators';
-import { httpOptions } from './httpOptions';
+import { JsonOptions } from './httpOptions';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class ApiUserService {
 
 
    LogIn(userLog: UserLogin): Observable<Response> {
-     return this._http.post<Response>(this.baseURL + "/login", userLog, httpOptions).pipe(
+     return this._http.post<Response>(this.baseURL + "/login", userLog, JsonOptions).pipe(
       map(response => {
           if(response.success === 1){
            const user: UserAuth = response.data; 
@@ -41,7 +41,7 @@ export class ApiUserService {
 
       
     Register(user: UserRegister): Observable<Response> {
-      return this._http.post<Response>(this.baseURL + "/register", user, httpOptions);
+      return this._http.post<Response>(this.baseURL + "/register", user, JsonOptions);
     }
 
 

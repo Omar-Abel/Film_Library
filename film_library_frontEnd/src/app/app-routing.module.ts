@@ -6,6 +6,7 @@ import { authGuardFn } from './security/authFn.guard';
 import { NavMainComponent } from './components/nav-main/nav-main.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
 
 const routes: Routes = [
   { path: '',
@@ -30,7 +31,7 @@ const routes: Routes = [
       {
         path: 'categories',
         component: CategoriesComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       }
 
   ]
@@ -55,7 +56,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation : 'reload' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
