@@ -11,6 +11,7 @@ namespace film_library_backEnd.Models
     {
         public User()
         {
+            Categories = new HashSet<Category>();
             Films = new HashSet<Film>();
         }
 
@@ -32,6 +33,8 @@ namespace film_library_backEnd.Models
         [Unicode(false)]
         public string Password { get; set; } = null!;
 
+        [InverseProperty("IdUserNavigation")]
+        public virtual ICollection<Category> Categories { get; set; }
         [InverseProperty("User")]
         public virtual ICollection<Film> Films { get; set; }
     }

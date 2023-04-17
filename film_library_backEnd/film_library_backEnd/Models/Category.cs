@@ -12,6 +12,11 @@ namespace film_library_backEnd.Models
         public int Id { get; set; }
         [StringLength(60)]
         [Unicode(false)]
-        public string CategoryName { get; set; } = null!;
+        public string Name { get; set; } = null!;
+        public int IdUser { get; set; }
+
+        [ForeignKey("IdUser")]
+        [InverseProperty("Categories")]
+        public virtual User IdUserNavigation { get; set; } = null!;
     }
 }

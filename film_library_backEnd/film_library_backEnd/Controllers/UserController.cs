@@ -1,6 +1,6 @@
 ﻿using film_library_backEnd.Models.Reponse;
 using film_library_backEnd.Models.Request;
-using film_library_backEnd.Services;
+using film_library_backEnd.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +11,6 @@ namespace film_library_backEnd.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        
         private IUserService _userService; 
 
         public UserController(IUserService userService)
@@ -30,7 +29,7 @@ namespace film_library_backEnd.Controllers
             {
                 response.success = 0;
                 response.message = "Usuario o contraseña incorrecta";
-                return BadRequest(response);
+                return Ok(response);
             }
 
             response.success = 1;

@@ -27,3 +27,21 @@
   background: #e8eaf6;
 }
 
+.navTitle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.tittlePage{
+  font-size: 32px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.imagePage{
+  width: 60px;
+  height: 80%;
+}
+

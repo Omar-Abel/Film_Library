@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace film_library_backEnd.Models
@@ -13,7 +14,10 @@ namespace film_library_backEnd.Models
         [StringLength(60)]
         [Unicode(false)]
         public string Tittle { get; set; } = null!;
-        [StringLength(256)]
+        [StringLength(60)]
+        [Unicode(false)]
+        public string Director { get; set; } = null!;
+        [StringLength(450)]
         [Unicode(false)]
         public string Description { get; set; } = null!;
         [Column(TypeName = "date")]
@@ -21,13 +25,14 @@ namespace film_library_backEnd.Models
         [StringLength(90)]
         [Unicode(false)]
         public string Category { get; set; } = null!;
-        [StringLength(256)]
+        [StringLength(300)]
         [Unicode(false)]
         public string ImagePath { get; set; } = null!;
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
 
         [ForeignKey("UserId")]
         [InverseProperty("Films")]
-        public virtual User? User { get; set; }
+        [JsonIgnore]
+        public virtual User User { get; set; } = null!;
     }
 }

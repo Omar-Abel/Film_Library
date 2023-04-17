@@ -1,111 +1,126 @@
 <mat-card class="body">
   <mat-card-header>
-    <mat-card-title>
-       Añadir pelicula
-    </mat-card-title>
+    <mat-card-title> Añadir pelicula </mat-card-title>
   </mat-card-header>
   <br />
   <mat-divider></mat-divider>
 
-      <br />
-      <form [formGroup]="AddingForm" (ngSubmit)="CreateFilm()">
-
-        <mat-form-field class="form" appearance="fill">
-          <mat-label>Titulo</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="tittle"
-            #inputtle
-            maxlength="60"
-          />
-          <mat-hint
-          align="start"
-          style="color: red"
-          *ngIf="(Tittle.errors?.['required'] && Tittle.touched)"
-          > El campo esta vacio
-          </mat-hint>
-          <mat-hint align="end">{{ inputtle.value.length }}/60</mat-hint>
-        </mat-form-field>
-        <br>
-        <mat-form-field class="form" appearance="fill">
-          <mat-label>Descripcion</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="description"
-            #inputdes
-            maxlength="250"
-          />
-          <mat-hint
-          align="start"
-          style="color: red"
-          *ngIf="(Description.errors?.['required'] && Description.touched)"
-          > El campo esta vacio
-          </mat-hint>
-          <mat-hint align="end">{{ inputdes.value.length }}/250</mat-hint>
-        </mat-form-field>
-        <br>
-        <mat-form-field class="form" appearance="fill">
-          <mat-label>Fecha de lanzamiento</mat-label>
-          <input
-            type="date"
-            matInput
-            formControlName="releaseDate"
-
-            maxlength="250"
-          />
-          <mat-hint
-          align="start"
-          style="color: red"
-          *ngIf="(ReleaseDate.errors?.['required'] && ReleaseDate.touched)"
-          > El campo esta erroneo/vacio
-          </mat-hint>
-        </mat-form-field>
-        <br>
-        <mat-form-field class="form" appearance="fill">
-          <mat-label>Categorias</mat-label>
-          <mat-select formControlName="category" multiple>
-            <mat-option *ngFor="let category of categories" [value]="category.name">
-              {{ category.name }}
-            </mat-option>
-          </mat-select>
-          <mat-hint
-          align="start"
-          style="color: red"
-          *ngIf="(Category.errors?.['required'] && Category.touched)"
-          > El campo esta vacio
-          </mat-hint>
-        </mat-form-field>
-
-        <mat-form-field class="form" appearance="fill">
-          <mat-label>Imagen</mat-label>
-          <input
-          matInput
-          formControlName="imagePath" 
-          type="text"
-          readonly
-          />
-        </mat-form-field>
-        <br>
-        <input
-        id="imageInput" 
-        hidden 
-        type="file"
-        accept="image/*" 
-        #uploader
-        (change)="ShowImage($event)"
+  <br />
+  <form [formGroup]="AddingForm" (ngSubmit)="CreateFilm()" class="content">
+    <mat-form-field class="form" appearance="fill">
+      <mat-label>Titulo</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="tittle"
+        #inputtle
+        maxlength="60"
+      />
+      <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(Tittle.errors?.['required'] && Tittle.touched)"
+      >
+        El campo esta vacio
+      </mat-hint>
+      <mat-hint align="end">{{ inputtle.value.length }}/60</mat-hint>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form" appearance="fill">
+      <mat-label>Director</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="director"
+        #inputdir
+        maxlength="60"
+      />
+      <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(Director.errors?.['required'] && Director.touched)"
+      >
+        El campo esta vacio
+      </mat-hint>
+      <mat-hint align="end">{{ inputdir.value.length }}/60</mat-hint>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form" appearance="fill">
+      <mat-label>Descripcion</mat-label>
+      <textarea
+        type="text"
+        matInput
+        formControlName="description"
+        #inputdes
+        maxlength="400"
+      ></textarea>
+      <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(Description.errors?.['required'] && Description.touched)"
+      >
+        El campo esta vacio
+      </mat-hint>
+      <mat-hint align="end">{{ inputdes.value.length }}/400</mat-hint>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form" appearance="fill">
+      <mat-label>Fecha de lanzamiento</mat-label>
+      <input
+        type="date"
+        matInput
+        formControlName="releaseDate"
+        maxlength="250"
+      />
+      <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(ReleaseDate.errors?.['required'] && ReleaseDate.touched)"
+      >
+        El campo esta erroneo/vacio
+      </mat-hint>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form" appearance="fill">
+      <mat-label>Categorias</mat-label>
+      <mat-select formControlName="category" multiple>
+        <mat-option *ngFor="let category of categories" [value]="category.name">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+      <mat-hint
+        align="start"
+        style="color: red"
+        *ngIf="(Category.errors?.['required'] && Category.touched)"
+      >
+        El campo esta vacio
+      </mat-hint>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form" appearance="fill">
+      <mat-label>Imagen</mat-label>
+      <input matInput formControlName="imagePath" type="text" readonly />
+    </mat-form-field>
+    <br />
+    <input
+      id="imageInput"
+      hidden
+      type="file"
+      accept="image/*"
+      #uploader
+      (change)="ShowImage($event)"
     />
-        <button
-        (click)="uploader.click()"
-        mat-raised-button
-        type="button"
-        color="accent"
-        >Subir imagen</button>
-        </form>
-        <br>
-        
 
+    <button
+      (click)="uploader.click()"
+      mat-raised-button
+      type="button"
+      color="accent"
+    >
+      Subir imagen
+    </button>
+  </form>
+  <br />
 
   <mat-card-actions>
     <button
@@ -119,15 +134,13 @@
       Añadir
     </button>
     <button
-    class="form"
-    mat-raised-button
-    color="warn"
-    type="button"
-    (click)="close()"
-  >
-    Cancelar
-  </button>
-
-
+      class="form"
+      mat-raised-button
+      color="warn"
+      type="button"
+      (click)="close()"
+    >
+      Cancelar
+    </button>
   </mat-card-actions>
 </mat-card>

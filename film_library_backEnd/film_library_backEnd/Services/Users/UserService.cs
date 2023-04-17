@@ -13,7 +13,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace film_library_backEnd.Services
+namespace film_library_backEnd.Services.Users
 {
     public class UserService : IUserService
     {
@@ -35,6 +35,7 @@ namespace film_library_backEnd.Services
                 && x.Password == spassword);
 
                 if (user == null) return null;
+                uReponse.id = user.Id;
                 uReponse.userName = user.UserName;
                 uReponse.token = GenerateToken(user);
             }

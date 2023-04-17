@@ -12,6 +12,9 @@
   <div class="content">
     <div class="info">
       <br />
+      <h2 mat-card-subtitle>Director:</h2>
+      <p>{{ filmselected.director}}</p>
+      <br />
       <h2 mat-card-subtitle>Fecha de lanzamiento:</h2>
       <p>{{ filmselected.releaseDate | date : "dd/MM/yyyy" }}</p>
       <br />
@@ -36,8 +39,10 @@
         mat-stroked-button
         color="warn"
         type="button"
+        (click)="openDeleteFilm()"
       >
         Eliminar
+
       </button>
         <button
           class="form"
@@ -52,9 +57,24 @@
       </mat-card-actions>
 
     </div>
-    <img class="film-image" mat-card-image src="./assets/imgs/godfather.jpg" />
+    <img class="film-image" mat-card-image src="https://localhost:7241/api/Films/Images?imagePath={{filmselected.imagePath}}" />
   </div>
 
 
 </mat-card>
 </mat-dialog-content>
+
+<ng-template #deleteConfirmation >
+  <h1 mat-dialog-title>Eliminar pelicula</h1>
+  <mat-dialog-content>
+  <h3> 
+    ¿Estas seguro que quieres eliminar la pelicula {{ filmselected.tittle }}?
+  </h3>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="deleteFilm()" >Eliminar</button>
+    <button mat-stroked-button color="basic" (click)="close()">Cancelar</button>
+
+  </mat-dialog-actions>
+</mat-dialog-content>
+</ng-template>

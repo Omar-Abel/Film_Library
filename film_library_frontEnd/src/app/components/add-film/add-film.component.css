@@ -4,15 +4,15 @@ mat-card-title {
 
 .body {
   width: 100%;
-  max-width: 330px;
+  max-width: 500px;
   padding: 15px;
   margin: auto;
   text-align: center;
 }
 
 
-.content h2 {
-  margin: 0%;
+.form{
+  width: 450px;
 }
 
 
@@ -20,23 +20,17 @@ mat-card-title {
 mat-card-actions {
   gap: 10px;
 }
-/* 
-@media screen and (max-width: 873) {
-  .film-image {
-    width: 40%;
-   
-  }
-}
 
 @media screen and (max-width: 650px) {
-  .content{
+    .body {
+      width: 330px;
+      padding: 15px;
+      margin: auto;
+      text-align: center;
+    }
 
-    display: inline;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  .film-image {
-    width: 60%;
-   
-  }
-} */
+    .form{
+      width: 100%;
+    }
+}
+  

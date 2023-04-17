@@ -10498,11 +10498,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\film_library_backEnd\\film_library_backEnd\\film_library_backEnd.csproj",
+      "projectUniqueName": "C:\\Users\\omarl\\Dev\\Film_Library\\film_library_backEnd\\film_library_backEnd\\film_library_backEnd.csproj",
       "projectName": "film_library_backEnd",
-      "projectPath": "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\film_library_backEnd\\film_library_backEnd\\film_library_backEnd.csproj",
+      "projectPath": "C:\\Users\\omarl\\Dev\\Film_Library\\film_library_backEnd\\film_library_backEnd\\film_library_backEnd.csproj",
       "packagesPath": "C:\\Users\\omarl\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\omarl\\OneDrive - Instituto Tecnológico de Las Américas (ITLA)\\Programacion II\\Film Library\\film_library_backEnd\\film_library_backEnd\\obj\\",
+      "outputPath": "C:\\Users\\omarl\\Dev\\Film_Library\\film_library_backEnd\\film_library_backEnd\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -10517,6 +10517,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -10587,7 +10588,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

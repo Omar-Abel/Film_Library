@@ -1,6 +1,7 @@
 export interface Film {
   id: number;
   tittle: string;
+  director: string;
   description: string;
   releaseDate: Date;
   category: string;

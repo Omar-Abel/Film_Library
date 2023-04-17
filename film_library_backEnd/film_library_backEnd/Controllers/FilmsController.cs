@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using film_library_backEnd.Data;
-using film_library_backEnd.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using film_library_backEnd.Models.Reponse;
-using film_library_backEnd.Services;
 using film_library_backEnd.Models.Request;
+using film_library_backEnd.Services.Films;
 
 namespace film_library_backEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class FilmsController : ControllerBase
     {
         private readonly IFilmService _filmService;
@@ -25,11 +17,11 @@ namespace film_library_backEnd.Controllers
             _filmService = filmService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllFilms()
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetAllFilms(int userId)
         {
             Response response = new Response();
-            response.Data = await _filmService.GetFilms();
+            response.Data = await _filmService.GetFilms(userId);
 
             if(response.Data == null)
             {
@@ -43,7 +35,17 @@ namespace film_library_backEnd.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Images")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAllFilmsImages(string imagePath)
+        {
+            byte[] imageBytes = await System.IO.File.ReadAllBytesAsync(imagePath);
+            return File(imageBytes, "image/jpeg");        
+        }
+
+
+        [HttpGet("Film{id}")]
+
         public async Task<IActionResult> GetFilmById(int id)
         {
             Response response = new Response();
@@ -62,9 +64,11 @@ namespace film_library_backEnd.Controllers
         }
 
         [HttpPost("addFilm")]
-        public async Task<IActionResult> PostFilm([FromBody] FilmRequest model)
+        public async Task<IActionResult> PostFilm([FromForm] FilmRequest model)
         {
             Response response = new Response();
+
+
             response.Data = await _filmService.AddFilm(model);
 
             if (response.Data == null)
@@ -80,7 +84,7 @@ namespace film_library_backEnd.Controllers
         }
 
         [HttpPut("updateFilm")]
-        public async Task<IActionResult> PutFilm(FilmRequest model)
+        public async Task<IActionResult> PutFilm([FromForm] FilmRequest model)
         {
             Response response = new Response();
             response.Data = await _filmService.UpdateFilm(model);
@@ -98,6 +102,7 @@ namespace film_library_backEnd.Controllers
         }
 
         [HttpDelete("{id}")]
+        
         public async Task<IActionResult> DeleteFilm(int id)
         {
             Response response = new Response();

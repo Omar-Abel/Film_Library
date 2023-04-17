@@ -1,5 +1,7 @@
 using film_library_backEnd.Models.Common;
-using film_library_backEnd.Services;
+using film_library_backEnd.Services.Categories;
+using film_library_backEnd.Services.Films;
+using film_library_backEnd.Services.Users;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Configuration;
@@ -21,12 +23,25 @@ namespace film_library_backEnd
             builder.Services.AddSwaggerGen();
 
             //Deshabilitar los cors para que acepte todo
-            builder.Services.AddCors(policyBuilder => 
-            policyBuilder.AddDefaultPolicy(policy => 
-            policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader()));
-            
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-             
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("*")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .SetIsOriginAllowedToAllowWildcardSubdomains();
+                    });
+            });
+
+
+
+
+
+
             var appSettingsSection = builder.Configuration.GetSection("AppSettings");
             builder.Services.Configure<AppSettings>(appSettingsSection);
 
@@ -53,15 +68,25 @@ namespace film_library_backEnd
 
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IFilmService, FilmService>();
-                
+            builder.Services.AddScoped<ICategoriesService, CategoriesService>();
+
 
             builder.Services.AddHttpContextAccessor();
 
 
             var app = builder.Build();
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
+
+
+             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseAuthentication();
+
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

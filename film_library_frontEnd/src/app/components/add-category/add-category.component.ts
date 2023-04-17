@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoriesResponse } from 'src/app/models/Categories';
 import { ApiCategoriesServiceService } from 'src/app/services/api-categories-service.service';
 import { ApiUserService } from 'src/app/services/apiUser.service';
-import { CategoriesComponent } from '../categories/categories.component';
+
 
 
 
@@ -22,7 +22,6 @@ export class AddCategoryComponent {
     private _apiAuthService: ApiUserService,
     private _categoriesService: ApiCategoriesServiceService,
     public snackBar: MatSnackBar,
-    public cat: CategoriesComponent,
   ) { }
 
 
@@ -58,7 +57,6 @@ export class AddCategoryComponent {
         this.dialog.closeAll();
       }});
 
-      this.cat.ngOnInit();
 }
 
   get CategoryName() {

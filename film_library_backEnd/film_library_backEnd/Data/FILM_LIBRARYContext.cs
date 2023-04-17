@@ -32,12 +32,22 @@ namespace film_library_backEnd.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.HasOne(d => d.IdUserNavigation)
+                    .WithMany(p => p.Categories)
+                    .HasForeignKey(d => d.IdUser)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Categorie__IdUse__6FE99F9F");
+            });
+
             modelBuilder.Entity<Film>(entity =>
             {
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Films)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Films__UserId__4BAC3F29");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Films__UserId__02FC7413");
             });
 
             OnModelCreatingPartial(modelBuilder);

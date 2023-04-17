@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { apiFilmService } from 'src/app/services/apiFilm.service';
 import { ViewFilmComponent } from '../view-film/view-film.component';
 import { Film } from 'src/app/models/films';
+
+
 
 @Component({
   selector: 'app-films-page',
@@ -10,12 +12,15 @@ import { Film } from 'src/app/models/films';
   styleUrls: ['./films-page.component.css'],
 })
 
-
 export class FilmsPageComponent implements OnInit {
   public films: Film[] = [];
   film!: Film;
+  filterTerm!: string;
 
-  constructor(private _filmService: apiFilmService, public dialog: MatDialog) {}
+  constructor(
+    private _filmService: apiFilmService, 
+    public dialog: MatDialog,
+    ) {}
 
   ngOnInit(): void {
     this.getFilms();
@@ -29,10 +34,24 @@ export class FilmsPageComponent implements OnInit {
     
   }
 
-  getFilms() {
+getFilms() {
     this._filmService.getUserFilms().subscribe((response) => {
-      console.log(response);
       this.films = response.data;
-    });
-  }
+      });
+};
+
+get Films() {
+  this.getFilms();
+  return true;
 }
+  
+
+
+
+
+
+  }
+
+
+
+

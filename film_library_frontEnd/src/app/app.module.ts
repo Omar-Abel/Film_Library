@@ -18,6 +18,8 @@ import { EditFilmComponent } from './components/edit-film/edit-film.component';
 import { AddFilmComponent } from './components/add-film/add-film.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 
@@ -32,7 +34,8 @@ import { AddCategoryComponent } from './components/add-category/add-category.com
     EditFilmComponent,
     AddFilmComponent,
     CategoriesComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,9 @@ import { AddCategoryComponent } from './components/add-category/add-category.com
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
+
     
     
   ],

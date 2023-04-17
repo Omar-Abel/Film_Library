@@ -1,12 +1,19 @@
 <div class="content">
+  <input
+  type="text"
+  class="searchBar"
+  placeholder="Buscar pelicula..."
+  [(ngModel)]="filterTerm"
+/>
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div  fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let film of films">
+
+    <div  fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let film of films | filter: filterTerm">
       <mat-card class="shadow-card" (click)="getFilmSelected(film.id)" >
         <mat-card-header>
           <mat-card-title> {{film.tittle}} </mat-card-title>
-          <mat-card-subtitle> {{film.releaseDate |date: 'dd/MM/yyyy'}} | {{film.category}} </mat-card-subtitle>
+          <mat-card-subtitle> {{film.releaseDate |date: 'dd/MM/yyyy'}} | {{film.director}} </mat-card-subtitle>
         </mat-card-header>
-        <img class="film-image" mat-card-image src="./assets/imgs/godfather.jpg">
+        <img class="film-image" mat-card-image src="https://localhost:7241/api/Films/Images?imagePath={{film.imagePath}}">
       </mat-card>
     </div>
   </div>

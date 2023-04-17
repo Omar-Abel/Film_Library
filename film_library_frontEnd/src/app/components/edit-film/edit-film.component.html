@@ -31,22 +31,42 @@
         </mat-form-field>
         <br>
         <mat-form-field class="form" appearance="fill">
-          <mat-label>Descripcion</mat-label>
+          <mat-label>Director</mat-label>
           <input
+            type="text"
+            matInput
+            formControlName="director"
+            #inputdir
+            maxlength="60"
+          />
+          <mat-hint
+          align="start"
+          style="color: red"
+          *ngIf="(Director.errors?.['required'] && Director.touched)"
+          > El campo esta vacio
+          </mat-hint>
+          <mat-hint align="end">{{ inputdir.value.length }}/60</mat-hint>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field class="form" appearance="fill">
+          <mat-label>Descripcion</mat-label>
+          <textarea
             type="text"
             matInput
             formControlName="description"
             #inputdes
-            maxlength="250"
-          />
+            maxlength="400"
+          ></textarea>
           <mat-hint
           align="start"
           style="color: red"
           *ngIf="(Description.errors?.['required'] && Description.touched)"
           > El campo esta vacio
           </mat-hint>
-          <mat-hint align="end">{{ inputdes.value.length }}/250</mat-hint>
+          <mat-hint align="end">{{ inputdes.value.length }}/400</mat-hint>
         </mat-form-field>
+
         <br>
         <mat-form-field class="form" appearance="fill">
           <mat-label>Fecha de lanzamiento</mat-label>
@@ -54,7 +74,6 @@
             type="date"
             matInput
             formControlName="releaseDate"
-
             maxlength="250"
           />
           <mat-hint
@@ -67,7 +86,7 @@
         <br>
         <mat-form-field class="form" appearance="fill">
           <mat-label>Categorias</mat-label>
-          <mat-select formControlName="category" multiple>
+          <mat-select formControlName="category" multiple >
             <mat-option *ngFor="let category of categories" [value]="category.name">
               {{ category.name }}
             </mat-option>
@@ -93,14 +112,16 @@
         <input
         id="imageInput" 
         hidden 
+        accept="image/*"
         type="file" 
         #uploader
-        (change)="uploadImage($event)"
+        (change)="ShowImage($event)"
     />
         <button
         (click)="uploader.click()"
         mat-raised-button
         color="accent"
+        type="button"
         >Subir imagen</button>
 
         </form>
@@ -113,7 +134,9 @@
       class="form"
       mat-raised-button
       color="primary"
-      type="button"
+      type="submit"
+      [disabled]="EditingForm.invalid"
+      (click)="EditFilm()"
     >
       Editar
     </button>

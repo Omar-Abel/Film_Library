@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
     const user: UserLogin = this.LoginForm.value as UserLogin;
 
     this.authService.LogIn(user).subscribe(response => {
-      console.log(response);
       if(response.success === 1){
         this.snackBar.open('Se ha iniciado sesion!', 'Aceptar', { duration: 3000 });
         this.router.navigate(['/main']);

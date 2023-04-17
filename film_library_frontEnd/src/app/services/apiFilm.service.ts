@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Response } from '../models/response';
 import { ApiUserService } from './apiUser.service';
-import { FormDataOptions } from './httpOptions';
-import { FilmResponse } from '../models/films';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +22,14 @@ export class apiFilmService {
   addFilm(film: FormData): Observable<Response> {
 
     return this._http.post<Response>(this.baseURL + 'addFilm', film);
+  }
+
+  updateFilm(film: FormData): Observable<Response> {
+    return this._http.put<Response>(this.baseURL + 'updateFilm', film);
+  }
+
+  deleteFilm(id: number): Observable<Response> {
+    return this._http.delete<Response>(this.baseURL + id);
   }
 
 
